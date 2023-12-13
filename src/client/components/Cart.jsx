@@ -54,8 +54,10 @@ export default function Cart() {
 
     const removeProduct = async () => {
         try {
+          
             const response = await axios.delete(`${API}/orders/cart/product/${productId}/removeAll`, null, headers);
             setCart(response.data);
+            console.log(response)
         } catch (err) {
             console.error(err.message);
         }
@@ -88,7 +90,7 @@ export default function Cart() {
                                     <span className="text-red-500 text-xs capitalize">{product?.category}</span>
                                     <div
                                         className="font-semibold hover:text-red-500 text-gray-500 text-xs cursor-pointer"
-                                        onClick={() => removeProduct(product.product_id)}
+                                        onClick={() => removeProduct(product.product.id)}
                                     >
                                         Remove
                                     </div>
