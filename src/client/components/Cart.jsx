@@ -52,6 +52,14 @@ export default function Cart() {
         }
     };
 
+    const removeProduct =async () => {
+      try {
+        const response = await axios.delete(`${API}/orders/cart/product/${productId}`, headers)
+      } catch (err) {
+        console.error(err.message)
+      }
+    }
+
     if (!cart) return <></>;
 
     return (
