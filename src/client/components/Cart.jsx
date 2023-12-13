@@ -52,13 +52,14 @@ export default function Cart() {
         }
     };
 
-    const removeProduct =async () => {
-      try {
-        const response = await axios.delete(`${API}/orders/cart/product/${productId}`, headers)
-      } catch (err) {
-        console.error(err.message)
-      }
-    }
+    const removeProduct = async () => {
+        try {
+            const response = await axios.delete(`${API}/orders/cart/product/${productId}/removeAll`, null, headers);
+            setCart(response.data);
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
 
     if (!cart) return <></>;
 
@@ -102,7 +103,7 @@ export default function Cart() {
                                     <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
                                 </svg>
                                 {/* Initialize to 1 or another default value */}
-                                <span style={{padding:"0 10px"}}> {product.quantity} </span>
+                                <span style={{ padding: "0 10px" }}> {product.quantity} </span>
                                 <svg
                                     className="fill-current text-gray-600 w-3 cursor-pointer"
                                     onClick={() => modifyQuantity(product.product_id, "add")}
