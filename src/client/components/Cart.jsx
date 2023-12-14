@@ -52,9 +52,9 @@ export default function Cart() {
         }
     };
 
-    const removeProduct = async () => {
+    const removeProduct = async (productId) => {
         try {
-            const response = await axios.delete(`${API}/orders/cart/product/${productId}/removeAll`, null, headers);
+            const response = await axios.delete(`${API}/orders/cart/product/${productId}/removeAll`, headers);
             setCart(response.data);
             console.log(response);
         } catch (err) {
